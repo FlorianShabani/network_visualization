@@ -36,9 +36,12 @@ class Utils:
         return result, end_time - start_time
 
     @staticmethod    
-    def plot_graph(g, pos, save=None, show=False):
-        nx.draw(g, pos)
+    def plot_graph(g, pos, save=None, show=False, figsize=(10, 10), **kwargs):
+        plt.figure(figsize=figsize)
+        nx.draw(g, pos, **kwargs)
         if save:
             Path(save).parent.mkdir(parents=True, exist_ok=True)
             plt.savefig(save)
-        plt.show()
+        if show:
+            plt.show()
+        plt.clf()
